@@ -1,0 +1,12 @@
+myusers:
+   - name: ravi
+     uid: 8001
+     first: ravi
+     middle: pralash
+     last: tiwari
+   - name: anurag
+     uid: 8002
+     first: anurag
+     middle: kumar
+     last: tiwari
+

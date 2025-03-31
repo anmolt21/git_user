@@ -1,0 +1,17 @@
+- hosts: all
+  become: true
+  vars_files:
+    - user_information.yml
+  tasks:
+    - name: add all the user and apply the password
+      vars:
+        password: "{{ lookup('password', './password-{{ item.name }}') }}"  # Corrected syntax here
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        comment: "{{ item.first | capitalize }} {{ item.middle | capitalize }} {{ item.last | capitalize }}"
+        password: "{{ password | password_hash('sha512') }}"  # Hashing the password
+        update_password: on_create
+      with_items:
+        - "{{ myusers }}"
+
